@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Configuration files (may contain sensitive information)
+config
+
+# Log files
+*.log
+
+# Backup files
+*~
