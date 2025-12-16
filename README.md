@@ -176,13 +176,12 @@ Logs are written to `~/Library/Logs/power-monitor-mqtt/power-monitor-mqtt.log` b
 
 #### Import Pre-configured Macro
 
-1. Download [Execute power-monitor-mqtt.kmmacros.zip](https://github.com/rewse/power-monitor-mqtt/blob/main/docs/Execute%20power-monitor-mqtt.kmmacros.zip)
-2. Extract the zip file
-3. Open Keyboard Maestro
-4. Import the macro:
+1. Download [Execute power-monitor-mqtt.kmmacros](https://github.com/rewse/power-monitor-mqtt/blob/main/Execute%20power-monitor-mqtt.kmmacros)
+2. Open Keyboard Maestro
+3. Import the macro:
    - Go to `File > Import > Import Macros Safely...`
-   - Select the extracted `.kmmacros` file
-5. Review and adjust the interval if needed
+   - Select the downloaded `.kmmacros` file
+4. Review and adjust the interval if needed
 
 **Note**: The `PATH` environment variable must include `/opt/homebrew/bin` (or `/usr/local/bin` for Intel Macs) to ensure `mosquitto_pub` and `jq` commands are accessible.
 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Activate</key>
+		<string>Normal</string>
+		<key>CreationDate</key>
+		<real>657010695.058231</real>
+		<key>CustomIconData</key>
+		<string>KMEC=Rounded=KMCOLOR:255,255,255,255=globe=86=0=0=3=KMCOLOR:0,0,0,255</string>
+		<key>Macros</key>
+		<array>
+			<dict>
+				<key>Actions</key>
+				<array>
+					<dict>
+						<key>ActionUID</key>
+						<integer>6443</integer>
+						<key>DisplayKind</key>
+						<string>None</string>
+						<key>HonourFailureSettings</key>
+						<true/>
+						<key>IncludeStdErr</key>
+						<true/>
+						<key>IncludedVariables</key>
+						<array>
+							<string>9999</string>
+						</array>
+						<key>MacroActionType</key>
+						<string>ExecuteShellScript</string>
+						<key>Path</key>
+						<string>~/.local/bin/power-monitor-mqtt --once</string>
+						<key>Source</key>
+						<string>Nothing</string>
+						<key>Text</key>
+						<string>PATH=/opt/homebrew/bin:$PATH ~/.local/bin/power-monitor-mqtt --once</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>TrimResults</key>
+						<true/>
+						<key>TrimResultsNew</key>
+						<true/>
+						<key>UseText</key>
+						<true/>
+					</dict>
+				</array>
+				<key>CreationDate</key>
+				<real>787506149.620857</real>
+				<key>ModificationDate</key>
+				<real>787579352.150069</real>
+				<key>Name</key>
+				<string>Execute power-monitor-mqtt</string>
+				<key>Triggers</key>
+				<array>
+					<dict>
+						<key>ExecuteType</key>
+						<string>While</string>
+						<key>MacroTriggerType</key>
+						<string>Time</string>
+						<key>RepeatTime</key>
+						<integer>60</integer>
+						<key>TimeFinishHour</key>
+						<integer>23</integer>
+						<key>TimeFinishMinutes</key>
+						<integer>59</integer>
+						<key>TimeHour</key>
+						<integer>0</integer>
+						<key>TimeMinutes</key>
+						<integer>0</integer>
+						<key>WhichDays</key>
+						<integer>127</integer>
+					</dict>
+				</array>
+				<key>UID</key>
+				<string>7B594FB7-34EB-416F-8B46-D42278BD6325</string>
+			</dict>
+		</array>
+		<key>Name</key>
+		<string>Global Macro Group</string>
+		<key>ToggleMacroUID</key>
+		<string>47748057-6901-4565-9CD6-9DC5C0869986</string>
+		<key>UID</key>
+		<string>7F58C505-7168-4DEB-81D9-0E67885C60DE</string>
+	</dict>
+</array>
+</plist>
