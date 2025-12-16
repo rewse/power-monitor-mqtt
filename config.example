@@ -7,12 +7,12 @@ MQTT_PORT="1883"
 MQTT_USERNAME="pub_client"
 MQTT_PASSWORD="your_mqtt_password"
 
-# Monitoring interval in seconds
-INTERVAL="60"
-
 # MQTT topic configuration
 TOPIC_PREFIX="power-monitor"
 DEVICE_NAME="$(hostname -s)"
+
+# Monitoring interval in seconds
+INTERVAL="60"
 
 # SAP Power Monitor app path
 POWER_MONITOR_PATH="/Applications/Power Monitor.app/Contents/MacOS/Power Monitor"

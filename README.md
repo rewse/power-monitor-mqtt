@@ -85,9 +85,9 @@ Configure the following items in the configuration file (`~/.config/power-monito
 - `MQTT_PORT`: MQTT broker port (usually 1883)
 - `MQTT_USER`: MQTT authentication username
 - `MQTT_PASS`: MQTT authentication password
-- `INTERVAL`: Data transmission interval for continuous mode (default: 60)
 - `TOPIC_PREFIX`: MQTT topic prefix (default: `power-monitor`)
 - `DEVICE_NAME`: Device name (default: Mac's *hostname*)
+- `INTERVAL`: Data transmission interval for continuous mode (default: `60` secondes)
 
 ## Usage
 
