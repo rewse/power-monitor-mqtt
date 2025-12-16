@@ -130,7 +130,7 @@ The script publishes data to the following topics:
 
 ### Data Format
 
-#### Eletric Current
+#### Electric Current
 ```json
 {
   "value": 45.2,
@@ -140,7 +140,6 @@ The script publishes data to the following topics:
 ```
 
 #### Status Information
-As of now, `country_code`, `precise_location`, and `carbon_footprint` do not return correct values from SAP Power Monitor.
 
 ```json
 {
@@ -151,6 +150,7 @@ As of now, `country_code`, `precise_location`, and `carbon_footprint` do not ret
   "timestamp": "2024-12-16T16:30:00+09:00"
 }
 ```
+**Note**: As of now, `country_code`, `precise_location`, and `carbon_footprint` do not return correct values from SAP Power Monitor.
 
 ## Log Viewing
 
@@ -162,7 +162,7 @@ Logs are written to `~/Library/Logs/power-monitor-mqtt/power-monitor-mqtt.log` b
 
 #### Import Pre-configured Macro
 
-1. Download [Execute power-monitor-mqtt.kmmacros](https://github.com/rewse/power-monitor-mqtt/blob/main/Execute%20power-monitor-mqtt.kmmacros)
+1. Download [Execute-power-monitor-mqtt.kmmacros](https://github.com/rewse/power-monitor-mqtt/blob/main/Execute-power-monitor-mqtt.kmmacros)
 2. Open Keyboard Maestro
 3. Import the macro:
    - Go to `File > Import > Import Macros Safely...`
