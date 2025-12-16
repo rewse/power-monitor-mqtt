@@ -160,11 +160,31 @@ Logs are written to `~/Library/Logs/power-monitor-mqtt/power-monitor-mqtt.log` b
 
 ### Using Keyboard Maestro
 
+#### Manual Setup
+
 1. Open Keyboard Maestro
-2. Create a new macro
-3. Trigger: "Periodically while logged in" with "Repeating evry 1 Minutes"
-4. Action: "Execute a Shell Script"
-5. Script: `/path/to/power-monitor-mqtt.sh --once`
+2. Create a new macro with a descriptive name (e.g., "Execute power-monitor-mqtt")
+3. Set the trigger:
+   - Type: "Periodically while logged in"
+   - Interval: "Repeating every 1 Minutes" (adjust as needed)
+4. Add an action:
+   - Type: "Execute a Shell Script"
+   - Script content: `PATH=/opt/homebrew/bin:$PATH ~/.local/bin/power-monitor-mqtt.sh --once`
+5. Save the macro
+
+![Keyboard Meastro Configuration](https://github.com/rewse/power-monitor-mqtt/blob/main/docs/keyboard-maestro.png)
+
+#### Import Pre-configured Macro
+
+1. Download [Execute power-monitor-mqtt.kmmacros.zip](https://github.com/rewse/power-monitor-mqtt/blob/main/docs/Execute%20power-monitor-mqtt.kmmacros.zip)
+2. Extract the zip file
+3. Open Keyboard Maestro
+4. Import the macro:
+   - Go to `File > Import > Import Macros Safely...`
+   - Select the extracted `.kmmacros` file
+5. Review and adjust the interval if needed
+
+**Note**: The `PATH` environment variable must include `/opt/homebrew/bin` (or `/usr/local/bin` for Intel Macs) to ensure `mosquitto_pub` and `jq` commands are accessible.
 
 ## Home Assistant Integration
 
