@@ -1,10 +1,10 @@
 # Power Monitor MQTT Publisher for macOS
 
-A script that retrieves electric current (W) from the SAP Power Monitor app for macOS and publishes it to an MQTT broker.
+A script that retrieves electric current value (W) from the SAP Power Monitor app for macOS and publishes it to an MQTT broker.
 
 ## Features
 
-- Electric current (W) retrieval from SAP Power Monitor
+- Electric current value (W) retrieval from SAP Power Monitor
 - Automatic MQTT publishing
 - Test mode, single-run mode, and continuous monitoring mode
 
@@ -101,7 +101,7 @@ Retrieves data from SAP Power Monitor only, without sending to MQTT broker.
 
 ### Single Run
 
-Sends electric current to MQTT broker once. Use with helper tool like Keyboard Maestro, LaunchAgent, or cron for periodic execution.
+Sends electric current value to MQTT broker once. Use with helper tool like Keyboard Maestro, LaunchAgent, or cron for periodic execution.
 
 ```bash
 ./power-monitor-mqtt.sh --once
@@ -124,13 +124,13 @@ Runs persistently at INTERVAL intervals.
 
 The script publishes data to the following topics:
 
-- `{TOPIC_PREFIX}/{DEVICE_NAME}/power/current` - Electric Current (W)
-- `{TOPIC_PREFIX}/{DEVICE_NAME}/power/average` - Average electric current (W)
+- `{TOPIC_PREFIX}/{DEVICE_NAME}/power/current` - Electric current value (W)
+- `{TOPIC_PREFIX}/{DEVICE_NAME}/power/average` - Average electric current value (W)
 - `{TOPIC_PREFIX}/{DEVICE_NAME}/status` - Status information
 
 ### Data Format
 
-#### Electric Current
+#### Electric current value
 ```json
 {
   "value": 45.2,
