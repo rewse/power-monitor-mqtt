@@ -82,12 +82,12 @@ make uninstall    # Remove installed script
 Configure the following items in the configuration file (`~/.config/power-monitor-mqtt/config`):
 
 - `MQTT_HOST`: MQTT broker hostname
-- `MQTT_PORT`: MQTT broker port (usually 1883)
-- `MQTT_USER`: MQTT authentication username
-- `MQTT_PASS`: MQTT authentication password
+- `MQTT_PORT`: MQTT broker port (default: `1883`)
+- `MQTT_USERNAME`: MQTT authentication username (default: `pub_client`)
+- `MQTT_PASSWORD`: MQTT authentication password
 - `TOPIC_PREFIX`: MQTT topic prefix (default: `power-monitor`)
 - `DEVICE_NAME`: Device name (default: Mac's *hostname*)
-- `INTERVAL`: Data transmission interval for continuous mode (default: `60` secondes)
+- `INTERVAL`: Data transmission interval for continuous mode (default: `60` seconds)
 
 ## Usage
 
@@ -152,6 +152,10 @@ As of now, `country_code`, `precise_location`, and `carbon_footprint` do not ret
 }
 ```
 
+## Log Viewing
+
+Logs are written to `~/Library/Logs/power-monitor-mqtt/power-monitor-mqtt.log` by default. The log file is automatically rotated when it reaches the maximum size.
+
 ## Periodic Execution Setup Example
 
 ### Using Keyboard Maestro
@@ -161,24 +165,6 @@ As of now, `country_code`, `precise_location`, and `carbon_footprint` do not ret
 3. Trigger: "Periodically while logged in" with "Repeating evry 1 Minutes"
 4. Action: "Execute a Shell Script"
 5. Script: `/path/to/power-monitor-mqtt.sh --once`
-
-## Log Viewing
-
-### Console.app (GUI)
-1. Open Console.app
-2. Filter by subsystem: `jp.rewse.power-monitor`
-
-### Command Line
-```bash
-# Show logs from the last hour
-log show --predicate 'subsystem == "jp.rewse.power-monitor"' --last 1h
-
-# Monitor logs in real-time
-log stream --predicate 'subsystem == "jp.rewse.power-monitor"'
-
-# Show logs including debug level
-log show --predicate 'subsystem == "jp.rewse.power-monitor"' --level debug --last 1h
-```
 
 ## Home Assistant Integration
 

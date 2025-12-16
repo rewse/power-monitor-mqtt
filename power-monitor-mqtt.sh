@@ -17,16 +17,55 @@ cleanup() {
 trap cleanup EXIT
 trap 'exit 1' INT TERM HUP
 
+rotate_log() {
+    local log_file="$1"
+    local max_size=$LOG_MAX_SIZE
+    local max_files=$LOG_MAX_FILES
+    
+    if [ ! -f "$log_file" ]; then
+        return 0
+    fi
+    
+    local file_size=$(stat -f%z "$log_file" 2>/dev/null || echo 0)
+    
+    if [ "$file_size" -ge "$max_size" ]; then
+        for i in $(seq $((max_files - 1)) -1 1); do
+            local old_file="${log_file}.$i"
+            local new_file="${log_file}.$((i + 1))"
+            if [ -f "$old_file" ]; then
+                mv "$old_file" "$new_file"
+            fi
+        done
+        
+        mv "$log_file" "${log_file}.1"
+        
+        local oldest_file="${log_file}.$((max_files + 1))"
+        if [ -f "$oldest_file" ]; then
+            rm -f "$oldest_file"
+        fi
+    fi
+}
+
+write_log() {
+    local level="$1"
+    local message="$2"
+    local timestamp=$(date -Iseconds)
+    
+    echo "${timestamp} [${level}] ${message}" | tee -a "$LOG_FILE" >&2
+}
+
 log_info() {
-    log -t "$LOG_SUBSYSTEM" -c "$LOG_CATEGORY" "$1"
+    write_log "INFO" "$1"
 }
 
 log_error() {
-    log -t "$LOG_SUBSYSTEM" -c "$LOG_CATEGORY" -l error "$1"
+    write_log "ERROR" "$1"
 }
 
 log_debug() {
-    log -t "$LOG_SUBSYSTEM" -c "$LOG_CATEGORY" -l debug "$1"
+    if [ "${DEBUG_MODE:-false}" = "true" ]; then
+        write_log "DEBUG" "$1"
+    fi
 }
 
 check_dependencies() {
@@ -126,6 +165,8 @@ process_power_data() {
 }
 
 test_power_monitor() {
+    rotate_log "$LOG_FILE"
+
     log_info "Testing Power Monitor connection..."
     
     if [ ! -f "$POWER_MONITOR_PATH" ]; then
@@ -147,6 +188,8 @@ test_power_monitor() {
 }
 
 run_once() {
+    rotate_log "$LOG_FILE"
+
     log_info "Running power monitor once..."
     
     local json_data
@@ -166,6 +209,8 @@ run_continuous() {
     log_info "Starting continuous power monitoring (interval: ${INTERVAL}s)"
     
     while true; do
+        rotate_log "$LOG_FILE"
+
         local json_data
         json_data=$(get_power_data)
         
@@ -182,19 +227,24 @@ run_continuous() {
 show_config() {
     echo "Current configuration:"
     echo "  Config file: $CONFIG_FILE"
-    echo "  Power Monitor path: $POWER_MONITOR_PATH"
     echo "  MQTT host: $MQTT_HOST"
     echo "  MQTT port: $MQTT_PORT"
-    echo "  MQTT user: $MQTT_USER"
+    echo "  MQTT username: $MQTT_USERNAME"
     echo "  Topic prefix: $TOPIC_PREFIX"
     echo "  Device name: $DEVICE_NAME"
-    echo "  Interval: ${INTERVAL}s"
-    echo "  Log subsystem: $LOG_SUBSYSTEM"
-    echo "  Log category: $LOG_CATEGORY"
+    echo "  Interval: $INTERVAL seconds"
+    echo "  Power Monitor path: $POWER_MONITOR_PATH"
+    echo "  Log file: $LOG_FILE"
+    echo "  Log max size: $LOG_MAX_SIZE bytes"
+    echo "  Log max files: $LOG_MAX_FILES"
+    echo "  Debug mode: $DEBUG_MODE"
 }
 
 main() {
     check_dependencies
+
+    local log_dir=$(dirname "$LOG_FILE")
+    mkdir -p "$log_dir"
     
     case "${1:-}" in
         --test)

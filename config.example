@@ -18,5 +18,7 @@ INTERVAL="60"
 POWER_MONITOR_PATH="/Applications/Power Monitor.app/Contents/MacOS/Power Monitor"
 
 # Logging configuration
-LOG_SUBSYSTEM="jp.rewse.power-monitor"
-LOG_CATEGORY="mqtt"
+LOG_FILE="${HOME}/Library/Logs/power-monitor-mqtt/power-monitor-mqtt.log"
+LOG_MAX_SIZE="1000000" # 1MB
+LOG_MAX_FILES="4"
+DEBUG_MODE=false
