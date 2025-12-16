@@ -19,7 +19,7 @@ A script that retrieves electric current (W) from the SAP Power Monitor app for 
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone git@github.com:rewse/power-monitor-mqtt.git
 cd power-monitor-mqtt
 ```
 
@@ -44,7 +44,7 @@ vim ~/.config/power-monitor-mqtt/config
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone git@github.com:rewse/power-monitor-mqtt.git
 cd power-monitor-mqtt
 ```
 
