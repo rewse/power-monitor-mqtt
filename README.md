@@ -205,12 +205,48 @@ mqtt:
       device_class: power
 ```
 
+### Power Measurement Accuracy Note
+
+**Important**: The power values reported by macOS internal sensors are typically 15-25% lower than actual AC power consumption measured by external devices (smart plugs, power meters). This difference is due to:
+
+- **AC-DC conversion efficiency**: Power adapter losses (10-20%)
+- **Internal power conversion**: Motherboard and component efficiency losses
+- **Measurement scope**: Internal sensors may not account for all components and external devices
+- **Measurement methodology**: Internal values are often estimates based on component usage
+
+For more accurate power consumption calculations (e.g., electricity cost estimation), consider using a correction factor.
+
+### Corrected Power Sensor (20% Increase)
+```yaml
+sensor:
+  - name: "My Mac Power Current Corrected"
+    unit_of_measurement: "W"
+    device_class: power
+    state: "{{ (states('sensor.my_mac_power_current') | float * 1.2) | round(1) }}"
+    
+  - name: "My Mac Power Average Corrected"
+    unit_of_measurement: "W"
+    device_class: power
+    state: "{{ (states('sensor.my_mac_power_average') | float * 1.2) | round(1) }}"
+```
+
 ### Power Consumption (kWh) Calculation with [Integral Sensor](https://www.home-assistant.io/integrations/integration/)
 ```yaml
 sensor:
+  # Using raw internal sensor values
   - platform: integration
     source: sensor.my_mac_power_current
-    name: My Mac Energy Total
+    name: My Mac Energy Total Internal
+    unit_prefix: k
+    round: 6
+    method: trapezoidal
+    max_sub_interval:
+      minutes: 5
+      
+  # Using corrected values for more accurate consumption
+  - platform: integration
+    source: sensor.my_mac_power_current_corrected
+    name: My Mac Energy Total Corrected
     unit_prefix: k
     round: 6
     method: trapezoidal
