@@ -40,6 +40,19 @@ make install
 vim ~/.config/power-monitor-mqtt/config
 ```
 
+#### Makefile Commands
+
+Available Makefile commands:
+
+```bash
+make help         # Show help message
+make deps         # Install dependencies (mosquitto, jq)
+make install      # Install script and config file
+make test         # Run script in test mode
+make clean        # Remove config file
+make uninstall    # Remove installed script
+```
+
 ### Manual Installation
 
 1. Clone the repository:
@@ -62,19 +75,6 @@ cp config.example ~/.config/power-monitor-mqtt/config
 4. Edit the configuration file:
 ```bash
 vim ~/.config/power-monitor-mqtt/config
-```
-
-### Makefile Commands
-
-Available Makefile commands:
-
-```bash
-make help         # Show help message
-make deps         # Install dependencies (mosquitto, jq)
-make install      # Install script and config file
-make test         # Run script in test mode
-make clean        # Remove config file
-make uninstall    # Remove installed script
 ```
 
 ## Configuration
