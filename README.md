@@ -238,12 +238,12 @@ template:
       - name: "My Mac Power Current Corrected"
         unit_of_measurement: "W"
         device_class: power
-        state: "{{ (states('sensor.my_mac_power_current') | float * 1.2) | round(1) }}"
+        state: "{{ (states('sensor.my_mac_power_current') | float * 1.2) }}"
         
       - name: "My Mac Power Average Corrected"
         unit_of_measurement: "W"
         device_class: power
-        state: "{{ (states('sensor.my_mac_power_average') | float * 1.2) | round(1) }}"
+        state: "{{ (states('sensor.my_mac_power_average') | float * 1.2) }}"
 ```
 
 ### Power Consumption (kWh) Calculation with [Integral Sensor](https://www.home-assistant.io/integrations/integration/)
