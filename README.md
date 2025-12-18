@@ -15,6 +15,19 @@ A script that retrieves power value (W) from the SAP Power Monitor app for macOS
 
 ## Installation
 
+### Prerequisites
+
+#### Install SAP Power Monitor:
+
+1. Visit the [SAP Power Monitor releases page](https://github.com/SAP/power-monitoring-tool-for-macos/releases)
+2. Download the latest `.pkg` file
+3. Install the downloaded file
+
+#### Install Homebrew
+
+1. Visit the [Homebrew page](https://brew.sh/)
+2. Copy the installation command and run it in your terminal
+
 ### Automatic Installation (Recommended)
 
 1. Clone the repository:
@@ -54,6 +67,8 @@ make uninstall    # Remove installed script
 ```
 
 ### Manual Installation
+
+**Note**: Make sure you have completed the Prerequisites section above before proceeding.
 
 1. Clone the repository:
 ```bash
